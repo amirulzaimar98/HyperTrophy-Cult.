@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#14251f">
+  <meta name="description" content="A simple two-day full-body workout planner for gym and home training.">
+  <title>TwoDay — Workout Planner</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="TwoDay home"><span class="brand-mark">2</span><span>TwoDay</span></a>
+    <span class="top-note">FULL-BODY TRAINING</span>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">YOUR TRAINING, SIMPLIFIED</p>
+        <h1>Two days.<br><span>Full-body progress.</span></h1>
+        <p class="hero-copy">A practical gym and home workout planner. Track your sets, log progress, and keep your routine consistent.</p>
+      </div>
+      <div class="hero-stat"><strong>2</strong><span>days per week</span><small>Gym + home options</small></div>
+    </section>
+
+    <nav class="tabs" aria-label="Main sections">
+      <button class="tab active" data-view="workouts">Workouts</button>
+      <button class="tab" data-view="progress">Progress</button>
+      <button class="tab" data-view="builder">Workout builder</button>
+      <button class="tab" data-view="settings">Settings</button>
+    </nav>
+
+    <section id="view-workouts" class="view active">
+      <div class="section-heading">
+        <div><p class="eyebrow">YOUR WEEKLY PLAN</p><h2>Choose a session</h2></div>
+        <div class="segmented" role="group" aria-label="Workout location">
+          <button class="segment active" data-location="gym">Gym</button>
+          <button class="segment" data-location="home">Home · 12 kg</button>
+        </div>
+      </div>
+      <div class="workout-switch">
+        <button class="day-card selected" data-day="A"><span>DAY 01</span><strong>Full Body A</strong><small>Balanced strength</small></button>
+        <button class="day-card" data-day="B"><span>DAY 02</span><strong>Full Body B</strong><small>Unilateral + stability</small></button>
+      </div>
+      <div class="session-summary" id="session-summary"></div>
+      <div id="exercise-list" class="exercise-list"></div>
+      <div class="session-footer">
+        <button id="finish-session" class="button primary">Finish session & save</button>
+        <p>Stop a set if you feel sharp pain. Choose a variation you can perform with good form.</p>
+      </div>
+    </section>
+
+    <section id="view-progress" class="view">
+      <div class="section-heading"><div><p class="eyebrow">CONSISTENCY OVER TIME</p><h2>Your progress</h2></div></div>
+      <div class="stats-grid">
+        <article class="stat-card"><span>Sessions logged</span><strong id="stat-sessions">0</strong></article>
+        <article class="stat-card"><span>Sets completed</span><strong id="stat-sets">0</strong></article>
+        <article class="stat-card"><span>Current streak</span><strong id="stat-streak">0 days</strong></article>
+      </div>
+      <div class="panel">
+        <div class="panel-heading"><h3>Recent sessions</h3><button id="export-data" class="button secondary small">Export data</button></div>
+        <div id="history-list" class="history-list"><p class="empty">Complete a session to start building your history.</p></div>
+      </div>
+      <div class="panel">
+        <h3>Exercise log</h3>
+        <p class="muted">Your completed sets and reps are saved on this device in this browser.</p>
+        <div id="exercise-history"></div>
+      </div>
+    </section>
+
+    <section id="view-builder" class="view">
+      <div class="section-heading"><div><p class="eyebrow">MAKE IT YOURS</p><h2>Custom workout</h2></div></div>
+      <form id="builder-form" class="panel form-grid">
+        <label>Exercise name<input id="custom-name" required maxlength="80" placeholder="e.g. Dumbbell floor press"></label>
+        <label>Muscle group
+          <select id="custom-muscle">
+            <option>Chest</option><option>Back</option><option>Shoulders</option><option>Biceps</option><option>Triceps</option><option>Quadriceps</option><option>Hamstrings</option><option>Glutes</option><option>Calves</option><option>Core</option><option>Full body</option>
+          </select>
+        </label>
+        <label>Gym version<input id="custom-gym" placeholder="e.g. Machine chest press"></label>
+        <label>Home version<input id="custom-home" placeholder="e.g. Push-up"></label>
+        <div class="form-row">
+          <label>Sets<input id="custom-sets" type="number" min="1" max="10" value="3" required></label>
+          <label>Reps<input id="custom-reps" type="text" value="8–12" required maxlength="20"></label>
+        </div>
+        <button class="button primary" type="submit">Add custom exercise</button>
+      </form>
+      <div class="panel"><div class="panel-heading"><h3>Your custom exercises</h3><button id="clear-custom" class="button secondary small" type="button">Clear all</button></div><div id="custom-list" class="custom-list"><p class="empty">Your custom exercises will appear here.</p></div></div>
+    </section>
+
+    <section id="view-settings" class="view">
+      <div class="section-heading"><div><p class="eyebrow">PREFERENCES</p><h2>Settings & reminders</h2></div></div>
+      <div class="panel settings-panel">
+        <h3>Workout reminder</h3>
+        <p class="muted">Choose a time and days. Browser notifications require permission and may not fire if the browser or device restricts background activity.</p>
+        <label>Reminder time<input id="reminder-time" type="time" value="18:00"></label>
+        <div class="days-picker" id="reminder-days">
+          <label><input type="checkbox" value="1"> Mon</label><label><input type="checkbox" value="2"> Tue</label><label><input type="checkbox" value="3" checked> Wed</label><label><input type="checkbox" value="4"> Thu</label><label><input type="checkbox" value="5"> Fri</label><label><input type="checkbox" value="6" checked> Sat</label><label><input type="checkbox" value="0"> Sun</label>
+        </div>
+        <div class="button-row"><button id="save-reminder" class="button primary" type="button">Save reminder</button><button id="test-reminder" class="button secondary" type="button">Test notification</button></div>
+        <p id="reminder-status" class="status" aria-live="polite"></p>
+      </div>
+      <div class="panel">
+        <h3>Rest timer</h3>
+        <p class="muted">Use the timer between sets. It keeps running while you use other sections of this page.</p>
+        <div class="timer-display" id="timer-display">01:30</div>
+        <div class="timer-controls"><button class="button secondary" data-seconds="60">60 sec</button><button class="button secondary" data-seconds="90">90 sec</button><button class="button secondary" data-seconds="120">120 sec</button><button id="timer-start" class="button primary">Start</button><button id="timer-reset" class="button secondary">Reset</button></div>
+      </div>
+      <div class="panel">
+        <h3>Data & privacy</h3>
+        <p class="muted">Workout logs and custom exercises are stored locally in this browser. Export your data before clearing browser data or switching devices.</p>
+        <button id="clear-history" class="button danger" type="button">Delete all saved workout data</button>
+      </div>
+    </section>
+  </main>
+
+  <footer><span>TwoDay Workout Planner</span><span>Start light. Progress steadily.</span></footer>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
