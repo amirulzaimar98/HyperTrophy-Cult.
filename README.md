@@ -1,6 +1,6 @@
-# TwoDay Workout Planner
+# HyperTrophy Cult.
 
-A minimal, mobile-friendly workout planner for two full-body sessions per week. Includes gym and home exercise alternatives (one 12 kg dumbbell), sets/reps tracking, custom exercises, progress history, a rest timer, and best-effort browser reminders.
+A minimal & elegant, mobile-friendly workout planner for two full-body sessions per week. Includes gym and home exercise alternatives (one 12 kg dumbbell), sets/reps tracking, custom exercises, progress history, a rest timer, and best-effort browser reminders.
 
 ## Features
 
@@ -10,7 +10,7 @@ A minimal, mobile-friendly workout planner for two full-body sessions per week. 
 - Save workout sessions and view recent history
 - Add custom exercises to Day A, Day B, or both
 - Rest timer with 60, 90, and 120-second presets
-- Export saved data as JSON
+- Export saved data as PDF
 - Optional browser notifications
 - Responsive layout and basic offline caching
 
